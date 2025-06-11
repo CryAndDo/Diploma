@@ -1,0 +1,495 @@
+.nutrition-page {
+  background: url('../assets/bg-pattern.png');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.day-cell.disabled {
+  color: #999;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nutrition-main {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nutrition-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #0b0c0c;
+  margin-bottom: 24px;
+}
+
+.nutrition-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 960px;
+  width: 100%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 32px;
+}
+
+.picker-section {
+  grid-column: 1 / 2;
+}
+
+.date-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.date-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0b0c0c;
+}
+
+.date-input {
+  width: 160px;
+  margin-left: 8px;
+  padding: 8px 12px;
+  border: 1px solid #c1c5cb;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #007aff;
+  background: #f9fafc;
+}
+
+.month-picker {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px 12px;
+    color: #0b0c0c;
+    &:hover {
+      color: #007aff;
+    }
+  }
+
+  span {
+    margin: 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0b0c0c;
+  }
+}
+
+.days-headers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b6e72;
+  margin-bottom: 8px;
+}
+
+.dates-grid {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 4px;
+
+  .week-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .day-cell {
+    padding: 10px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &.empty {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    &:hover:not(.empty) {
+      background: #f0f4ff;
+    }
+
+    &.selected {
+      background: #007aff;
+      color: #ffffff;
+      font-weight: 600;
+      animation: pulse 1s infinite;
+    }
+  }
+}
+
+.stats-section {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  p {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #0b0c0c;
+    strong {
+      font-weight: 600;
+    }
+  }
+}
+
+.actions-section {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .wide {
+    width: 50%;
+    margin-bottom: 16px;
+  }
+
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+  }
+}
+
+.btn {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &.btn-primary {
+    background: #007aff;
+    color: #ffffff;
+    width: 100%;
+    max-width: 360px;
+
+    &:hover {
+      background: #005ec2;
+    }
+  }
+
+  &.btn-secondary {
+    background: #007aff;
+    color: #ffffff;
+    flex: 1;
+    &.btn-compact {
+      flex: 0.5;
+      margin-bottom: 30px;
+    }
+    &:hover {
+      background: #005ec2;
+    }
+  }
+}
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  input[type='file'] {
+    display: none;
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: #f5f8ff;
+    border: 2px dashed #007aff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover {
+      background: #e8efff;
+      border-color: #005ec2;
+    }
+
+    .file-upload__icon {
+      margin-right: 6px;
+      font-size: 16px;
+    }
+    .file-upload__text {
+      font-size: 14px;
+      color: #007aff;
+      font-weight: 500;
+    }
+  }
+
+  &__btn {
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    background: #007aff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) {
+      background: #005ec2;
+    }
+    &:disabled {
+      background: #aacfff;
+      cursor: not-allowed;
+    }
+  }
+}
+.comp-error-banner {
+  display: flex;
+  align-items: center;
+  background: #ffe5e5;
+  border: 1px solid #ffcccc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 12px 0;
+  color: #cc0000;
+  font-size: 14px;
+
+  &__icon {
+    margin-right: 8px;
+  }
+  &__text {
+    flex: 1;
+  }
+  &__close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #cc0000;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+}
+
+.btn-compact {
+  padding: 6px 12px;
+  height: auto;
+  line-height: 1.3;
+  border-radius: 24px;
+  max-width: fit-content;
+}
+
+@media (max-width: 400px) {
+  .nutrition-main {
+    padding: 16px;
+  }
+  .btn {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+  .nutrition-title {
+    text-align: center;
+    font-size: 27px;
+    margin-bottom: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .nutrition-card {
+    padding: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-gap: 16px;
+  }
+
+  .picker-section,
+  .stats-section {
+    grid-column: 1;
+  }
+
+  .actions-section .wide {
+    width: 100%;
+  }
+
+  .date-input {
+    width: 120px;
+  }
+
+  .days-headers {
+    font-size: 12px;
+  }
+
+  .day-cell {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+  .nutrition-main {
+    padding: 16px;
+  }
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  .nutrition-title {
+    font-size: 27px;
+    margin-bottom: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .nutrition-card {
+    padding: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-gap: 16px;
+  }
+
+  .picker-section,
+  .stats-section {
+    grid-column: 1;
+  }
+
+  .actions-section .wide {
+    width: 100%;
+  }
+
+  .date-input {
+    width: 120px;
+  }
+
+  .days-headers {
+    font-size: 12px;
+  }
+
+  .day-cell {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .nutrition-main {
+    padding: 24px;
+  }
+
+  .nutrition-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .nutrition-card {
+    padding: 24px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 24px;
+  }
+
+  .picker-section {
+    grid-column: 1;
+  }
+
+  .stats-section {
+    grid-column: 2;
+  }
+
+  .actions-section {
+    grid-column: 1 / -1;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .date-input {
+    width: 140px;
+  }
+
+  .day-cell {
+    padding: 9px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .nutrition-main {
+    padding: 32px 48px;
+  }
+
+  .nutrition-title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .nutrition-card {
+    padding: 32px;
+    max-width: 960px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 32px;
+  }
+
+  .picker-section {
+    grid-column: 1 / 2;
+  }
+
+  .stats-section {
+    grid-column: 2 / 3;
+  }
+
+  .actions-section {
+    grid-column: 1 / 3;
+  }
+
+  .btn {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .date-input {
+    width: 160px;
+  }
+
+  .day-cell {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 113, 233, 0);
+  }
+}

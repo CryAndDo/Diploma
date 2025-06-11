@@ -1,0 +1,90 @@
+.auth-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; // убираем подчёркивание
+    color: inherit; // сохраняем цвет текста
+    cursor: pointer;
+  }
+
+  &__title {
+    margin-left: 8px; // отступ между логотипом и текстом
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  &__logo-left {
+    width: 60px;
+  }
+
+  &__logo-right {
+    width: 70px;
+  }
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #e5e8eb;
+}
+
+// Mobile (смартфоны)
+@media (max-width: 600px) {
+  .auth-header {
+    padding: 10px 20px;
+
+    &__logo-left {
+      width: 40px;
+    }
+
+    &__title {
+      font-size: 1.2rem;
+    }
+
+    &__logo-right {
+      width: 50px;
+    }
+  }
+}
+
+// Tablet (от 600px до 1024px)
+@media (min-width: 600px) and (max-width: 1024px) {
+  .auth-header {
+    padding: 15px 30px;
+
+    &__logo-left {
+      width: 50px;
+    }
+
+    &__title {
+      font-size: 1.4rem;
+    }
+
+    &__logo-right {
+      width: 60px;
+    }
+  }
+}
+
+// Desktop (от 1024px и выше)
+@media (min-width: 1024px) {
+  .auth-header {
+    padding: 20px 40px;
+  }
+}

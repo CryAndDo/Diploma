@@ -1,0 +1,312 @@
+.meal-container {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  background: #fff;
+  background-image: url('../assets/bg-pattern.png');
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.meal-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.form-wrapper2 {
+  max-width: 610px;
+  justify-content: center;
+  width: 100%;
+  height: 570px;
+  padding: 20px;
+  border-radius: 55px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+.friday-warning {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.date-display {
+  margin-bottom: 24px;
+  margin-left: 27px;
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    &:read-only {
+      background-color: #f9f9f9;
+    }
+  }
+}
+
+.calendar {
+  margin-bottom: 24px;
+  .month-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    button {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      &:hover {
+        color: #0056b3;
+      }
+    }
+    span {
+      margin: 0 16px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+  .days-of-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+    span {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  .dates-grid {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    .week-row {
+      display: grid;
+      justify-items: center;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .day {
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      &.empty {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+      &:hover:not(.empty) {
+        background-color: #f0f0f0;
+      }
+      &.selected {
+        background-color: #007bff;
+        color: white;
+      }
+    }
+  }
+}
+
+.meal-buttons {
+  display: flex;
+  justify-content: stretch;
+  gap: 16px;
+  margin-bottom: 24px;
+  margin-left: 27px;
+
+  .meal-btn {
+    padding: 12px 24px;
+    border: 2px solid #007bff;
+    border-radius: 25px;
+    background: transparent;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      background-color: #e6f7ff;
+    }
+    &.active {
+      background-color: #007bff;
+      color: white;
+    }
+  }
+}
+
+.btn-submit {
+  width: 94%;
+  padding: 16px 40px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 23px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  &:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 599px) {
+  .meal-main {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .form-wrapper2 {
+    padding: 16px;
+    height: auto;
+    border-radius: 24px;
+  }
+
+  .date-display,
+  .meal-buttons,
+  .btn-submit {
+    margin-left: 0;
+  }
+
+  .date-display input {
+    width: 92%;
+  }
+
+  .calendar .month-picker span {
+    font-size: 1rem;
+  }
+
+  .calendar .dates-grid .day {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .calendar .days-of-week span {
+    font-size: 0.9rem;
+  }
+
+  .meal-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .meal-btn {
+    width: 100%;
+  }
+
+  .btn-submit {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .meal-main {
+    padding: 24px;
+  }
+
+  .form-wrapper2 {
+    padding: 20px;
+    height: auto;
+    border-radius: 35px;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .calendar .dates-grid .day {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .meal-buttons {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .meal-btn {
+    flex: 1 1 45%;
+    min-width: 120px;
+  }
+
+  .btn-submit {
+    width: 97%;
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .form-wrapper2 {
+    max-width: 650px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .meal-buttons {
+    gap: 16px;
+  }
+
+  .meal-btn {
+    padding: 12px 24px;
+  }
+
+  .btn-submit {
+    width: 94%;
+    padding: 16px 40px;
+  }
+}
