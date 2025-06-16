@@ -35,6 +35,12 @@ app.use(
 );
 app.use(express.json());
 
+app.use(cors({
+  origin: 'https://diploma-sepia.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // Отладочный лог запросов и заголовков
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);

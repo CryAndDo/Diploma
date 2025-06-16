@@ -4,6 +4,7 @@ const api = axios.create({
   baseURL: 'http://localhost:4000/api',
   headers: { 'Content-Type': 'application/json' },
 });
+fetch('http://localhost:4000/api')
 
 // Перед каждым запросом прикручиваем Authorization
 api.interceptors.request.use((config) => {
